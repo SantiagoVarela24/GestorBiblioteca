@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="mb-4">
+    <h3><i class="bi bi-house-door"></i> Bienvenido, @User.FindFirst("NombreCompleto")?.Value</h3>
+    <p class="text-muted">Resumen general de la biblioteca.</p>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="fs-2 fw-bold">@ViewBag.Total</div>
+                    <div>Préstamos totales</div>
+                </div>
+                <i class="bi bi-journal-bookmark" style="font-size: 2.5rem; opacity:.6;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="fs-2 fw-bold">@ViewBag.Pendientes</div>
+                    <div>Pendientes por devolver</div>
+                </div>
+                <i class="bi bi-hourglass-split" style="font-size: 2.5rem; opacity:.6;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="fs-2 fw-bold">@ViewBag.Devueltos</div>
+                    <div>Libros devueltos</div>
+                </div>
+                <i class="bi bi-check2-circle" style="font-size: 2.5rem; opacity:.6;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Prestamo" asp-action="Listar" class="btn btn-primary"><i class="bi bi-list-ul"></i> Ver todos los préstamos</a>
+    <a asp-controller="Prestamo" asp-action="Guardar" class="btn btn-success"><i class="bi bi-plus-circle"></i> Registrar préstamo</a>
+</div>

@@ -1,0 +1,65 @@
+﻿@model List<PrestamoModel>
+@{
+    ViewData["Title"] = "Préstamos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span><i class="bi bi-journal-bookmark"></i> Préstamos de libros</span>
+    <a asp-action="Guardar" asp-controller="Prestamo" class="btn btn-success btn-sm"><i class="bi bi-plus-circle"></i> Nuevo préstamo</a>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Persona</th>
+                <th>Teléfono</th>
+                <th>Libro</th>
+                <th>Autor</th>
+                <th>Fecha préstamo</th>
+                <th>Fecha devolución</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NombrePersona</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.TituloLibro</td>
+                        <td>@item.Autor</td>
+                        <td>@item.FechaPrestamo.ToString("dd/MM/yyyy")</td>
+                        <td>@(item.FechaDevolucion?.ToString("dd/MM/yyyy") ?? "-")</td>
+                        <td>
+                            @if (item.Devuelto)
+                            {
+                                <span class="badge bg-success">Devuelto</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Pendiente</span>
+                            }
+                        </td>
+                        <td class="text-nowrap">
+                             @if (!item.Devuelto)
+                             {
+                                <a asp-action="Devolver" asp-controller="Prestamo" class="btn btn-outline-success btn-sm" asp-route-IdPrestamo="@item.IdPrestamo" title="Marcar como devuelto"><i class="bi bi-check2-circle"></i></a>
+                             }
+                             <a asp-action="Editar" asp-controller="Prestamo" class="btn btn-primary btn-sm" asp-route-IdPrestamo="@item.IdPrestamo"><i class="bi bi-pencil"></i></a>
+                             <a asp-action="Eliminar" asp-controller="Prestamo" class="btn btn-danger btn-sm" asp-route-IdPrestamo="@item.IdPrestamo"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="8" class="text-center text-muted">Aún no hay préstamos registrados.</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+  </div>
+</div>

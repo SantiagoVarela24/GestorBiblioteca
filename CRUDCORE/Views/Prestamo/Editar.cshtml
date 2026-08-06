@@ -1,0 +1,58 @@
+﻿@model PrestamoModel
+@{
+    ViewData["Title"] = "Editar préstamo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    <i class="bi bi-pencil"></i> Editar préstamo
+  </div>
+  <div class="card-body">
+
+      <form asp-action="Editar" asp-controller="Prestamo" method="post">
+
+        <input asp-for="IdPrestamo" type="hidden">
+        <input asp-for="Devuelto" type="hidden">
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+            <label asp-for="NombrePersona" class="form-label"></label>
+            <input asp-for="NombrePersona" type="text" class="form-control">
+            <span asp-validation-for="NombrePersona" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" type="text" class="form-control">
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+            <label asp-for="TituloLibro" class="form-label"></label>
+            <input asp-for="TituloLibro" type="text" class="form-control">
+            <span asp-validation-for="TituloLibro" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label asp-for="Autor" class="form-label"></label>
+            <input asp-for="Autor" type="text" class="form-control">
+            <span asp-validation-for="Autor" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+            <label asp-for="FechaPrestamo" class="form-label"></label>
+            <input asp-for="FechaPrestamo" type="date" class="form-control">
+            <span asp-validation-for="FechaPrestamo" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label asp-for="FechaDevolucion" class="form-label"></label>
+            <input asp-for="FechaDevolucion" type="date" class="form-control">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
+      <a asp-action="Listar" asp-controller="Prestamo" class="btn btn-warning">Volver a la lista</a>
+    </form>
+
+  </div>
+</div>
